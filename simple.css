@@ -1,26 +1,77 @@
 /* Global variables. */
+@font-face {
+  font-family: 'IosevkaMono';
+  src: url("fonts/IosevkaFixed-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IosevkaMono';
+  src: url("fonts/IosevkaFixed-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'IosevkaMono';
+  src: url("fonts/IosevkaFixed-SemiBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IosevkaMono';
+  src: url("fonts/IosevkaFixed-SemiBoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'IosevkaSans';
+  src: url("fonts/IosevkaAile-Light.ttc") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IosevkaSans';
+  src: url("fonts/IosevkaAile-SemiBold.ttc") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 :root,
 ::backdrop {
+
   /* Set sans-serif & mono fonts */
-  --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
-    "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
-    "Helvetica Neue", sans-serif;
-  --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  --standard-border-radius: 5px;
+  --sans-font: 'IosevkaSans', sans-serif;
+  --mono-font: 'IosevkaMono', monospace;
+  --standard-border-radius: 3px;
+  --base-font-size: 1rem;
+  --heading-multiplier: 1.25;
+  --margin-block-size: 1.2rem;
+  --mobile-base-font-size: 0.8rem;
+  --mobile-heading-multiplier: 1.2;
 
   /* Default (light) theme */
-  --bg: #fff;
-  --accent-bg: #f5f7ff;
-  --text: #212121;
-  --text-light: #585858;
-  --border: #898EA4;
-  --accent: #0d47a1;
-  --accent-hover: #1266e2;
+  --bg: #fbf1c7;
+  --accent-bg: #ebdbb2;
+  --darker-bg: #f9f5d7;
+  --text: #3c3836;
+  --text-light: #7c6f64;
+  --border: #7c6f64;
+  --accent: #d65d0e;
+  --accent-hover: #af3a03;
   --accent-text: var(--bg);
-  --code: #d81b60;
-  --preformatted: #444;
-  --marked: #ffdd33;
-  --disabled: #efefef;
+  --code: #8f3f71;
+  --preformatted: #504945;
+  --marked: #d79921;
+  --disabled: #ebdbb2;
+  --blue-highlight: #076678;
+  --blue: #458588;
+  --green: #79740e;
+  --border-width: 0.5px;
 }
 
 /* Dark theme */
@@ -28,16 +79,22 @@
   :root,
   ::backdrop {
     color-scheme: dark;
-    --bg: #212121;
-    --accent-bg: #2b2b2b;
-    --text: #dcdcdc;
-    --text-light: #ababab;
-    --accent: #ffb300;
-    --accent-hover: #ffe099;
+    --bg: #282828; /* gruvbox */
+    --accent-bg: #3c3836; /* gruvbox */
+	--darker-bg: #1d2021; /* gruvbox */
+    --text: #ebdbb2; /* gruvbox */
+    --text-light: #a89984; /* gruvbox */
+    --accent: #d65d0e; /* gruvbox */
+    --accent-hover: #fe8019; /* gruvbox */
     --accent-text: var(--bg);
-    --code: #f06292;
-    --preformatted: #ccc;
-    --disabled: #111;
+    --code: #d3869b; /* gruvbox */
+    --preformatted: #d5c4a1; /* gruvbox */
+    --disabled: #3c3836; /* gruvbox */
+	--border: #a89984; /* gruvbox */
+	--marked: #d79921; /* gruvbox */
+	--blue-highlight: #83a598;
+	--blue: #458588;
+	--green: #b8bb26;
   }
   /* Add a bit of transparency so light media isn't so glaring in dark mode */
   img,
@@ -45,6 +102,8 @@
     opacity: 0.8;
   }
 }
+
+
 
 /* Reset box-sizing */
 *, *::before, *::after {
@@ -71,7 +130,7 @@ html {
 body {
   color: var(--text);
   background-color: var(--bg);
-  font-size: 1.15rem;
+  font-size: var(--base-font-size);
   line-height: 1.5;
   display: grid;
   grid-template-columns: 1fr min(45rem, 90%) 1fr;
@@ -84,14 +143,14 @@ body > * {
 /* Make the header bg full width, but the content inline with body */
 body > header {
   background-color: var(--accent-bg);
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
   text-align: center;
-  padding: 0 0.5rem 2rem 0.5rem;
+  padding: 0 0.5rem 1rem 0.5rem;
   grid-column: 1 / -1;
 }
 
 body > header > *:only-child {
-  margin-block-start: 2rem;
+  margin-block-start: var(--margin-block-size);
 }
 
 body > header h1 {
@@ -113,40 +172,50 @@ body > footer {
   margin-top: 4rem;
   padding: 2rem 1rem 1.5rem 1rem;
   color: var(--text-light);
-  font-size: 0.9rem;
+  font-size: calc(var(--base-font-size) / var(--heading-multiplier));
   text-align: center;
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width) solid var(--border);
 }
 
 /* Format headers */
 h1 {
-  font-size: 3rem;
+  font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), 4));
+  margin-block-start: var(--margin-block-size);
+  margin-block-end: var(--margin-block-size);
 }
 
 h2 {
-  font-size: 2.6rem;
-  margin-top: 3rem;
+  font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), 3));
+  margin-block-start: var(--margin-block-size);
+  margin-block-end: var(--margin-block-size);
 }
 
 h3 {
-  font-size: 2rem;
-  margin-top: 3rem;
+  font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), 2));
+  margin-block-start: var(--margin-block-size);
+  margin-block-end: var(--margin-block-size);
 }
 
 h4 {
-  font-size: 1.44rem;
+  font-size: calc(var(--base-font-size) * var(--heading-multiplier));
+  margin-block-start: var(--margin-block-size);
+  margin-block-end: var(--margin-block-size);
 }
 
 h5 {
-  font-size: 1.15rem;
+  font-size: var(--base-font-size);
+  margin-block-start: var(--margin-block-size);
+  margin-block-end: var(--margin-block-size);
 }
 
 h6 {
-  font-size: 0.96rem;
+  font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), -1));
+  margin-block-start: var(--margin-block-size);
+  margin-block-end: var(--margin-block-size);
 }
 
 p {
-  margin: 1.5rem 0;
+  margin: var(--margin-block-size) 0;
 }
 
 /* Prevent long strings from overflowing container */
@@ -164,19 +233,23 @@ h3 {
 /* Reduce header size on mobile */
 @media only screen and (max-width: 720px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: calc(var(--mobile-base-font-size) * pow(var(--mobile-heading-multiplier, 4)));
   }
 
   h2 {
-    font-size: 2.1rem;
+    font-size: calc(var(--mobile-base-font-size) * pow(var(--mobile-heading-multiplier, 3)));
   }
 
   h3 {
-    font-size: 1.75rem;
+    font-size: calc(var(--mobile-base-font-size) * pow(var(--mobile-heading-multiplier, 2)));
   }
 
   h4 {
-    font-size: 1.25rem;
+    font-size: calc(var(--mobile-base-font-size) * var(--mobile-heading-multiplier));
+  }
+
+  body {
+	font-size: var(--mobile-base-font-size);
   }
 }
 
@@ -197,10 +270,10 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 label[type="button"] {
-  border: 1px solid var(--accent);
+  border: var(--border-width) solid var(--accent);
   background-color: var(--accent);
   color: var(--accent-text);
-  padding: 0.5rem 0.9rem;
+  padding: 0.25rem 0.45rem;
   text-decoration: none;
   line-height: normal;
 }
@@ -218,6 +291,11 @@ button[disabled] {
 
 input[type="range"] {
   padding: 0;
+  accent-color: var(--blue);
+}
+
+input[type="range"]:hover {
+  accent-color: var(--blue-highlight);
 }
 
 /* Set the cursor to '?' on an abbreviation and style the abbreviation to show that there is more information underneath */
@@ -279,7 +357,7 @@ header > nav ol li {
 header > nav a,
 header > nav a:visited {
   margin: 0 0.5rem 1rem 0.5rem;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--standard-border-radius);
   color: var(--text);
   display: inline-block;
@@ -308,7 +386,7 @@ header > nav a[aria-current="page"] {
 /* Consolidate box styling */
 aside, details, pre, progress {
   background-color: var(--accent-bg);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--standard-border-radius);
   margin-bottom: 1rem;
 }
@@ -334,7 +412,7 @@ aside {
 }
 
 article, fieldset, dialog {
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   padding: 1rem;
   border-radius: var(--standard-border-radius);
   margin-bottom: 1rem;
@@ -346,8 +424,8 @@ section h2:first-child {
 }
 
 section {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: var(--border-width) solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
   padding: 2rem 1rem;
   margin: 3rem 0;
 }
@@ -400,7 +478,7 @@ figure > table {
 
 td,
 th {
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   text-align: start;
   padding: 0.5rem;
 }
@@ -428,7 +506,7 @@ button,
 .button {
   font-size: inherit;
   font-family: inherit;
-  padding: 0.5rem;
+  padding: 0.25rem;
   margin-bottom: 0.5rem;
   border-radius: var(--standard-border-radius);
   box-shadow: none;
@@ -440,7 +518,7 @@ select,
 input {
   color: var(--text);
   background-color: var(--bg);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
 }
 label {
   display: block;
@@ -609,8 +687,8 @@ samp {
 
 kbd {
   color: var(--preformatted);
-  border: 1px solid var(--preformatted);
-  border-bottom: 3px solid var(--preformatted);
+  border: var(--border-width) solid var(--preformatted);
+  border-bottom: calc(var(--border-width) * 3) solid var(--preformatted);
   border-radius: var(--standard-border-radius);
   padding: 0.1rem 0.4rem;
 }
@@ -663,6 +741,7 @@ progress:indeterminate::-moz-progress-bar {
 }
 
 dialog {
+  background: var(--darker-bg);
   max-width: 40rem;
   margin: auto;
 }
@@ -674,6 +753,7 @@ dialog::backdrop {
 
 @media only screen and (max-width: 720px) {
   dialog {
+	background: var(--darker-bg);
     max-width: 100%;
     margin: auto 1em;
   }
@@ -694,10 +774,18 @@ sub {
   top: 0.3em; 
 }
 
+meter::-webkit-meter-optimum-value {
+  background: var(--green);
+}
+
+meter::-moz-meter-optimum-value {
+  background: var(--green);
+}
+
 /* Classes for notices */
 .notice {
   background: var(--accent-bg);
-  border: 2px solid var(--border);
+  border: calc(var(--border-width) * 2) solid var(--border);
   border-radius: var(--standard-border-radius);
   padding: 1.5rem;
   margin: 2rem 0;
