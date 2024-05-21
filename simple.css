@@ -41,6 +41,15 @@
   font-style: normal;
 }
 
+/* set default for no-display-darkmode classes */
+.darkmode {
+	display: none;
+}
+
+.lightmode {
+	display: block;
+}
+
 :root,
 ::backdrop {
 
@@ -105,6 +114,15 @@
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
+  /* handle darkmode display classes */
+  .lightmode {
+	  display: none;
+  }
+  
+  .darkmode {
+	  display: block;
+  }
+
   :root,
   ::backdrop {
     color-scheme: dark;
