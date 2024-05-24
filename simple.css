@@ -437,8 +437,7 @@ nav ol li {
 
 nav ul li:last-child,
 nav ol li:last-child {
-	border-left: var(--border-width) solid var(--border);
-	border-right: 0;
+	border: none;
 }
 
 nav a,
