@@ -463,7 +463,6 @@ nav a[aria-current="page"] {
   nav a {
     border: none;
     padding: 0;
-    text-decoration: underline;
     line-height: 1;
   }
 }
