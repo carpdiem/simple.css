@@ -433,7 +433,7 @@ nav ol {
 nav ul li,
 nav ol li {
   display: inline-block;
-  border-right: var(--border-width) solid var(--accent-bg);
+  border-right: calc(2 * var(--border-width)) solid var(--accent-bg);
 }
 
 nav ul li:last-child,
