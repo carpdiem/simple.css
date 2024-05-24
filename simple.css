@@ -437,8 +437,7 @@ nav ol li {
 nav a,
 nav a:visited {
   margin: 0 0.5rem 0 0.5rem;
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--standard-border-radius);
+  border: none;
   color: var(--text);
   display: inline-block;
   padding: 0 0 0 0;
@@ -448,7 +447,6 @@ nav a:visited {
 nav a:hover,
 nav a.current,
 nav a[aria-current="page"] {
-  border-color: var(--accent);
   color: var(--accent);
   cursor: pointer;
 }
