@@ -413,6 +413,7 @@ nav {
   font-size: 1rem;
   line-height: 2;
   padding: 0 0 0 0;
+  border-bottom: var(--border-width) solid var(--bg4);
 }
 
 /* Use flexbox to allow items to wrap, as needed */
