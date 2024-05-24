@@ -432,6 +432,13 @@ nav ol {
 nav ul li,
 nav ol li {
   display: inline-block;
+  border-right: var(--border-width);
+}
+
+nav ul li:last-child,
+nav ol li:last-child {
+	border-left: var(--border-width);
+	border-right: 0;
 }
 
 nav a,
