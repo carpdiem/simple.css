@@ -722,6 +722,10 @@ video {
   border-radius: var(--standard-border-radius);
 }
 
+object {
+  width: 100%;
+}
+
 figure {
   margin: 0;
   display: block;
