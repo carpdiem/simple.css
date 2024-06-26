@@ -60,6 +60,7 @@
   --base-font-size: 1rem;
   --heading-multiplier: 1.25;
   --margin-block-size: 1.2rem;
+  --big-margin-block-size: 1.6rem;
   --mobile-base-font-size: 1rem;
   --mobile-heading-multiplier: 1.2;
 
@@ -261,19 +262,19 @@ body > footer {
 h1 {
   font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), 4));
   margin-block-start: 0;
-  margin-block-end: var(--margin-block-size);
+  margin-block-end: var(--big-margin-block-size);
 }
 
 h2 {
   font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), 3));
   margin-block-start: 0;
-  margin-block-end: var(--margin-block-size);
+  margin-block-end: var(--big-margin-block-size);
 }
 
 h3 {
   font-size: calc(var(--base-font-size) * pow(var(--heading-multiplier), 2));
   margin-block-start: 0;
-  margin-block-end: var(--margin-block-size);
+  margin-block-end: var(--big-margin-block-size);
 }
 
 h4 {
@@ -295,7 +296,7 @@ h6 {
 }
 
 p {
-  margin: var(--margin-block-size) 0;
+  margin: var(--big-margin-block-size) 0;
 }
 
 /* Prevent long strings from overflowing container */
